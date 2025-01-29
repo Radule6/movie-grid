@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import useStore from '@stores/useStore';
+import useGridStore from '@stores/useGridStore';
 import Grid from '@features/grid/components/Grid';
 
 const StyledContainer = styled.div`
@@ -17,7 +17,7 @@ const StyledContainer = styled.div`
 `;
 
 const GridContainer = () => {
-  const handleKeyDown = useStore((state) => state.handleKeyDown);
+  const handleKeyDown = useGridStore((state) => state.handleKeyDown);
   const containerRef = useRef(null);
 
   useEffect(() => {

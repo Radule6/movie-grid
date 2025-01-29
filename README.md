@@ -1,8 +1,4 @@
 # Todo List
-- [ ] Get API Key
-- [ ] Connect to the API
-- [ ] Put the data in the grid
-- [ ] Refine the grid design
 - [ ] Navbar
 - [ ] Dark mode toggle
 - [ ] Add a search bar?

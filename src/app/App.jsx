@@ -1,22 +1,35 @@
 import React, { useEffect, useRef } from "react";
-import useStore from "@stores/useStore";
+import useGridStore from "@stores/useGridStore";
 import GridContainer from "@features/grid/components/GridContainer";
+import useMovieStore from "@stores/useMovieStore";
 
 const App = () => {
   const containerRef = useRef(null);
-  const setGridData = useStore((state) => state.setGridData);
+  const setGridData = useGridStore((state) => state.setGridData);
+  const {moviesByGenre, fetchGenres, fetchMoviesForGenres, genres} = useMovieStore();
 
   useEffect(() => {
-    const dynamicGridData = [
-      ["A", "B", "C", "D", "E", "F", "G", "H"],
-      ["I", "J", "K", "L", "M"],
-      ["N", "O", "P", "Q", "R", "S", "T"],
-      ["U", "V", "W", "X", "Y", "Z"],
-      ["1", "2", "3"],
-    ];
-    
-    setGridData(dynamicGridData);
-  }, []);
+    fetchGenres();
+  }, [fetchGenres]);
+
+  useEffect(() => {
+    if (genres && genres.length > 0) {
+      fetchMoviesForGenres(genres.map(genre => genre.id));
+    }
+  }, [genres, fetchMoviesForGenres]);
+
+  useEffect(() => {
+    if (!moviesByGenre) {
+      return;
+    }
+
+    const rows = Object.values(moviesByGenre).map((movies, index) => ({
+      category: movies.genreName,
+      items: index === 2 ? (movies.items || []).slice(0, 3) : (movies.items || [])
+    }));
+    setGridData(rows);
+
+  }, [moviesByGenre, setGridData]);
 
   useEffect(() => {
     if (containerRef.current) {
