@@ -52,26 +52,6 @@ npm run dev
 ## Usage
 - Use **Arrow Keys** to navigate through the grid
 - Press the theme toggle button to switch between dark and light modes
-- The grid automatically adjusts based on screen size:
-  - Mobile: 2 cards
-  - Tablet: 3 cards
-  - Desktop: 4-5 cards
-
-n coverage
-```
-
-## Project Structure
-
-```
-src/
-├── app/
-├── assets/
-├── components/
-├── features/
-│   └── grid/
-├── stores/
-└── utils/
-```
 
 ## Possible Improvements
 - Add more features like search, filter, and sorting
