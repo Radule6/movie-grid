@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { getVisibleCards } from "@/features/grid/constants";
+
 const visibleCards = getVisibleCards();
 
 const useGridStore = create((set) => ({
@@ -76,9 +77,7 @@ const useGridStore = create((set) => ({
         default:
           break;
       }
-      console.log(state.gridData[row].items.length);
       col = Math.min(state.gridData[row].items.length - 1, col);
-      console.log(col);
       if (col < newOffsets[row]) {
         newOffsets[row] = col;
       } else if (col >= newOffsets[row] + visibleCards) {

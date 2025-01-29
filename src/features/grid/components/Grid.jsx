@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import useGridStore from '@stores/useGridStore';
 import GridCard from '@features/grid/components/GridCard';
 import { getVisibleCards } from '@features/grid/constants';

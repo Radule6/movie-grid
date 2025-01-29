@@ -1,18 +1,28 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@components': path.resolve(__dirname, './src/components'),
-      '@features': path.resolve(__dirname, './src/features'),
-      '@stores': path.resolve(__dirname, './src/stores'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@': `${__dirname}/src`,
+      '@components': `${__dirname}/src/components`,
+      '@features': `${__dirname}/src/features`,
+      '@stores': `${__dirname}/src/stores`,
+      '@utils': `${__dirname}/src/utils`,
+      '@assets': `${__dirname}/src/assets`,
     },
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/setupTests.js',
+    css: true
+  }
 })

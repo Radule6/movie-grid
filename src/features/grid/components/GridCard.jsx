@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import  { useRef, useEffect } from 'react';
 import useGridStore from '@stores/useGridStore';
 import { getPosterUrl } from '@/features/grid/constants';
 import styled from 'styled-components';
-
+import PropTypes from 'prop-types';
 const StyledGridCard = styled.div`
   padding: 0.3rem;
   width: 200px;
@@ -11,7 +11,7 @@ const StyledGridCard = styled.div`
   border-radius: 4px;
   text-align: center;
   color: ${({ $isSelected }) => $isSelected ? 'white' : 'black'};
-  border: ${({ $isSelected }) => $isSelected ? '2px solid #007bff' : '2px solid #ccc'};
+  border: ${({ $isSelected }) => $isSelected ? '4px solid #1e40af' : '2px solid #ccc'};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,42 +36,33 @@ const GridCard = ({ item, rowIndex, colIndex }) => {
   const selected = useGridStore((state) => state.selected);
   const isSelected = selected.row === rowIndex && selected.col === colIndex;
   const posterUrl = getPosterUrl(item.poster_path);
-
   const cardRef = useRef(null);
 
   useEffect(() => {
     if (isSelected && cardRef.current) {
-      const element = cardRef.current;
-      const targetPosition = element.getBoundingClientRect().top + window.scrollY - (window.innerHeight / 2) + (element.offsetHeight / 2);
-      const startPosition = window.scrollY;
-      const distance = targetPosition - startPosition;
-      const duration = 400; 
-      let startTime = null;
-
-      const scroll = (currentTime) => {
-        if (!startTime) startTime = currentTime;
-        const timeElapsed = currentTime - startTime;
-        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(scroll);
-      };
-
-      const easeInOutQuad = (t, b, c, d) => {
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
-      };
-
-      requestAnimationFrame(scroll);
+      cardRef.current.scrollIntoView({
+        behavior: 'auto',
+        block: 'nearest',
+        inline: 'nearest'
+      });
     }
   }, [isSelected]);
 
   return (
-    <div ref={cardRef}>
-      <StyledGridCard $isSelected={isSelected} img={posterUrl} />
+    <div ref={cardRef} data-testid="grid-card">
+      <StyledGridCard
+        $isSelected={isSelected}
+        img={posterUrl}
+      >
+      </StyledGridCard>
     </div>
   );
+};
+
+GridCard.propTypes = {
+  item: PropTypes.object.isRequired,
+  rowIndex: PropTypes.number.isRequired,
+  colIndex: PropTypes.number.isRequired,
 };
 
 export default GridCard;
