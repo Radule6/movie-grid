@@ -1,21 +1,9 @@
 import { useRef, useEffect } from 'react';
-import styled from 'styled-components';
 import useGridStore from '@stores/useGridStore';
 import Grid from '@features/grid/components/Grid';
 import useDarkModeStore from '@stores/useDarkModeStore';
+import { StyledContainer } from '@features/grid/styles/GridStyledComponentsStyle';
 
-const StyledContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  outline: none;
-  padding: 2rem;
-  min-height: 100%;
-  @media (max-width: 768px) {
-    padding: 1rem;
-  }
-`;
 
 const GridContainer = () => {
   const handleKeyDown = useGridStore((state) => state.handleKeyDown);

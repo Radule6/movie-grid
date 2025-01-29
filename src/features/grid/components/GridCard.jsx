@@ -1,36 +1,8 @@
 import  { useRef, useEffect } from 'react';
 import useGridStore from '@stores/useGridStore';
 import { getPosterUrl } from '@/features/grid/constants';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-const StyledGridCard = styled.div`
-  padding: 0.3rem;
-  width: 200px;
-  height: 300px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  text-align: center;
-  color: ${({ $isSelected }) => $isSelected ? 'white' : 'black'};
-  border: ${({ $isSelected }) => $isSelected ? '4px solid #1e40af' : '2px solid #ccc'};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-image: url(${({ img }) => img});
-  background-position: center;
-  background-size: cover ;
-  background-repeat: no-repeat;
-  @media (max-width: 1200px) {
-    width: 180px;
-    height: 270px;
-  }
-
-  @media (max-width: 768px) {
-    width: 140px;
-    height: 210px;
-    padding: 0.25rem;
-  }
-`;
-
+import { StyledGridCard } from '@features/grid/styles/GridStyledComponentsStyle';
 
 const GridCard = ({ item, rowIndex, colIndex }) => {
   const selected = useGridStore((state) => state.selected);

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, fireEvent } from '@testing-library/react';
-import GridContainer from '../GridContainer';
+import GridContainer from '@features/grid/components/GridContainer';
 
 // Create a mock function for handleKeyDown
 const mockHandleKeyDown = vi.fn();

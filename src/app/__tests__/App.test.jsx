@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
-import App from '../App';
+import App from '@/app/App';
 
 // Mock all the stores
 const mockFetchGenres = vi.fn();

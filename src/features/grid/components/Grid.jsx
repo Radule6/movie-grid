@@ -2,25 +2,8 @@ import  { useState, useEffect } from 'react';
 import useGridStore from '@stores/useGridStore';
 import GridCard from '@features/grid/components/GridCard';
 import { getVisibleCards } from '@features/grid/constants';
-import styled from 'styled-components';
+import { StyledGrid, GridRow, CategoryTitle } from '@features/grid/styles/GridStyledComponentsStyle';
 
-const StyledGrid = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const GridRow = styled.div`
-  display: grid;
-  grid-template-columns: repeat(${props => props.$visibleCards}, 1fr);
-  gap: 5rem;
-  justify-items: center;
-`;
-
-const CategoryTitle = styled.h2`
-  margin: 0.5rem 0;
-  font-size: 17px;
-  font-weight: 600;
-`;
 
 const Grid = () => {
   const viewOffsets = useGridStore((state) => state.viewOffsets);

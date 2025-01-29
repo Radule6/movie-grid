@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render } from '@testing-library/react';
-import Grid from '../Grid';
+import Grid from '@features/grid/components/Grid';
 
 // Mock the getVisibleCards function
 vi.mock('@features/grid/constants', () => ({
