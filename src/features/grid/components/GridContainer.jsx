@@ -4,12 +4,16 @@ import useStore from '@stores/useStore';
 import Grid from '@features/grid/components/Grid';
 
 const StyledContainer = styled.div`
-  height: 100vh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   outline: none;
+  padding: 2rem;
+  overflow-y: auto;
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `;
 
 const GridContainer = () => {
